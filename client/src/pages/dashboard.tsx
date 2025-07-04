@@ -36,14 +36,26 @@ export default function Dashboard() {
 
   // Check if setup is completed and switch to demo state
   const setupCompletedMutation = useMutation({
-    mutationFn: () => apiRequest("/api/set-demo-state", "POST"),
+    mutationFn: () => apiRequest("POST", "/api/set-demo-state"),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
+      toast({
+        title: "Setup completed!",
+        description: "Your meal plan and inventory have been populated with demo data.",
+      });
+    },
+    onError: (error: any) => {
+      console.error('Failed to complete setup:', error);
+      toast({
+        title: "Setup error",
+        description: "Failed to initialize demo data, please try again.",
+        variant: "destructive",
+      });
     },
   });
 
   const regenerateMutation = useMutation({
-    mutationFn: () => apiRequest("/api/regenerate", "POST"),
+    mutationFn: () => apiRequest("POST", "/api/regenerate"),
     onMutate: () => {
       setIsRegenerating(true);
     },
@@ -73,7 +85,7 @@ export default function Dashboard() {
   });
 
   const skipMealMutation = useMutation({
-    mutationFn: (mealId: string) => apiRequest("/api/skip-meal", "POST", { mealId }),
+    mutationFn: (mealId: string) => apiRequest("POST", "/api/skip-meal", { mealId }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
       toast({

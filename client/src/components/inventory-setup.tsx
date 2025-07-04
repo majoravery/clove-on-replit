@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
 
 interface InventorySetupProps {
   open: boolean;
@@ -120,7 +121,7 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     // Save progress
     localStorage.setItem('inventoryProgress', JSON.stringify(selectedItems));
     
@@ -130,6 +131,14 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
       // Complete setup
       localStorage.setItem('userInventory', JSON.stringify(selectedItems));
       localStorage.setItem('setupCompleted', 'true');
+      
+      try {
+        // Switch to demo state on server
+        await apiRequest('POST', '/api/set-demo-state');
+      } catch (error) {
+        console.error('Failed to switch to demo state:', error);
+      }
+      
       onComplete();
     }
   };
