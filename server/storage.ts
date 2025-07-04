@@ -23,7 +23,7 @@ export class MemStorage implements IStorage {
       
       days.push({
         id: dayName.toLowerCase(),
-        name: dayName,
+        name: i === 0 ? "Today" : i === 1 ? "Tomorrow" : dayName,
         date: `${monthName} ${dayNumber}`,
         isToday: i === 0
       });
@@ -66,39 +66,39 @@ export class MemStorage implements IStorage {
     const weekDays = this.generateWeekDays();
     const demoMeals = [
       [
-        { title: "Avocado Toast", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop", cuisine: "Modern", difficulty: "Easy" as const },
-        { title: "Caesar Salad", image: "https://images.unsplash.com/photo-1551248429-40975aa4de74?w=400&h=300&fit=crop", cuisine: "Mediterranean", difficulty: "Easy" as const },
-        { title: "Grilled Chicken", image: "https://images.unsplash.com/photo-1598515213692-d4eee2a31304?w=400&h=300&fit=crop", cuisine: "American", difficulty: "Medium" as const }
+        { title: "Avocado Toast", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><rect x="80" y="120" width="240" height="100" rx="20" fill="#8B4513"/><ellipse cx="200" cy="140" rx="80" ry="30" fill="#32CD32"/><circle cx="200" cy="140" r="8" fill="#FFD700"/></svg>`), cuisine: "Modern", difficulty: "Easy" as const },
+        { title: "Caesar Salad", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="120" ry="80" fill="#90EE90"/><rect x="160" y="120" width="80" height="60" fill="#228B22" opacity="0.7"/><circle cx="150" cy="130" r="8" fill="#FFE4B5"/><circle cx="250" cy="170" r="8" fill="#FFE4B5"/></svg>`), cuisine: "Mediterranean", difficulty: "Easy" as const },
+        { title: "Grilled Chicken", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="100" ry="60" fill="#D2691E"/><path d="M130 120 Q200 100 270 120 Q250 180 200 190 Q150 180 130 120" fill="#CD853F"/></svg>`), cuisine: "American", difficulty: "Medium" as const }
       ],
       [
-        { title: "Greek Yogurt Bowl", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop", cuisine: "Mediterranean", difficulty: "Easy" as const },
-        { title: "Quinoa Salad", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop", cuisine: "Modern", difficulty: "Easy" as const },
-        { title: "Pasta Carbonara", image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop", cuisine: "Italian", difficulty: "Medium" as const }
+        { title: "Greek Yogurt Bowl", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="80" ry="60" fill="#FFF8DC"/><circle cx="180" cy="130" r="12" fill="#FF69B4"/><circle cx="220" cy="170" r="10" fill="#4169E1"/><circle cx="200" cy="140" r="8" fill="#32CD32"/></svg>`), cuisine: "Mediterranean", difficulty: "Easy" as const },
+        { title: "Quinoa Salad", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="110" ry="70" fill="#F5DEB3"/><circle cx="170" cy="130" r="4" fill="#8B4513"/><circle cx="210" cy="140" r="4" fill="#8B4513"/><circle cx="190" cy="170" r="4" fill="#8B4513"/><circle cx="180" cy="150" r="3" fill="#FF6347"/></svg>`), cuisine: "Modern", difficulty: "Easy" as const },
+        { title: "Pasta Carbonara", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="120" ry="80" fill="#333"/><path d="M100 120 Q150 110 200 130 Q250 110 300 120" stroke="#FFD700" stroke-width="4" fill="none"/><path d="M110 140 Q160 130 210 150 Q260 130 290 140" stroke="#FFD700" stroke-width="4" fill="none"/></svg>`), cuisine: "Italian", difficulty: "Medium" as const }
       ],
       [
-        { title: "Scrambled Eggs", image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop", cuisine: "American", difficulty: "Easy" as const },
-        { title: "Caprese Sandwich", image: "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop", cuisine: "Italian", difficulty: "Easy" as const },
-        { title: "Chicken Stir-fry", image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop", cuisine: "Asian", difficulty: "Medium" as const }
+        { title: "Scrambled Eggs", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="120" ry="60" fill="#333"/><ellipse cx="180" cy="130" rx="40" ry="25" fill="#FFD700"/><ellipse cx="220" cy="170" rx="50" ry="30" fill="#FFD700"/></svg>`), cuisine: "American", difficulty: "Easy" as const },
+        { title: "Caprese Sandwich", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><rect x="120" y="100" width="160" height="100" fill="#DEB887"/><circle cx="160" cy="130" r="15" fill="#FF6347"/><circle cx="200" cy="150" r="15" fill="#FFF"/><circle cx="240" cy="170" r="15" fill="#32CD32"/></svg>`), cuisine: "Italian", difficulty: "Easy" as const },
+        { title: "Chicken Stir-fry", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="120" ry="80" fill="#333"/><rect x="150" y="120" width="30" height="20" fill="#CD853F"/><rect x="200" y="140" width="25" height="25" fill="#32CD32"/></svg>`), cuisine: "Asian", difficulty: "Medium" as const }
       ],
       [
-        { title: "Oatmeal", image: "https://images.unsplash.com/photo-1574168280036-9cc8bbc2e4d7?w=400&h=300&fit=crop", cuisine: "Modern", difficulty: "Easy" as const },
-        { title: "Turkey Wrap", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop", cuisine: "American", difficulty: "Easy" as const },
-        { title: "Salmon with Rice", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop", cuisine: "Asian", difficulty: "Medium" as const }
+        { title: "Oatmeal", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="90" ry="60" fill="#F5DEB3"/><circle cx="180" cy="130" r="8" fill="#4169E1"/><circle cx="220" cy="170" r="6" fill="#FF69B4"/></svg>`), cuisine: "Modern", difficulty: "Easy" as const },
+        { title: "Turkey Wrap", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="60" ry="100" fill="#DEB887"/><rect x="170" y="110" width="60" height="10" fill="#8B4513"/><rect x="175" y="130" width="50" height="8" fill="#32CD32"/></svg>`), cuisine: "American", difficulty: "Easy" as const },
+        { title: "Salmon with Rice", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="120" rx="80" ry="30" fill="#FFA07A"/><ellipse cx="200" cy="180" rx="100" ry="40" fill="#FFF8DC"/></svg>`), cuisine: "Asian", difficulty: "Medium" as const }
       ],
       [
-        { title: "Smoothie Bowl", image: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400&h=300&fit=crop", cuisine: "Modern", difficulty: "Easy" as const },
-        { title: "Chicken Salad", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop", cuisine: "American", difficulty: "Easy" as const },
-        { title: "Beef Tacos", image: "https://images.unsplash.com/photo-1565299585323-38174c26dee0?w=400&h=300&fit=crop", cuisine: "Mexican", difficulty: "Medium" as const }
+        { title: "Smoothie Bowl", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="90" ry="60" fill="#DA70D6"/><circle cx="170" cy="130" r="10" fill="#FF69B4"/><circle cx="230" cy="170" r="8" fill="#32CD32"/><circle cx="200" cy="140" r="6" fill="#4169E1"/></svg>`), cuisine: "Modern", difficulty: "Easy" as const },
+        { title: "Chicken Salad", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="110" ry="70" fill="#90EE90"/><rect x="170" y="130" width="25" height="15" fill="#CD853F"/><rect x="205" y="160" width="20" height="12" fill="#CD853F"/></svg>`), cuisine: "American", difficulty: "Easy" as const },
+        { title: "Beef Tacos", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><path d="M150 120 Q200 100 250 120 L250 180 Q200 200 150 180 Z" fill="#DEB887"/><rect x="170" y="130" width="60" height="8" fill="#8B4513"/><rect x="175" y="145" width="50" height="6" fill="#32CD32"/></svg>`), cuisine: "Mexican", difficulty: "Medium" as const }
       ],
       [
-        { title: "Pancakes", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop", cuisine: "American", difficulty: "Medium" as const },
-        { title: "Poke Bowl", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop", cuisine: "Hawaiian", difficulty: "Easy" as const },
-        { title: "Pizza Margherita", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop", cuisine: "Italian", difficulty: "Hard" as const }
+        { title: "Pancakes", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><circle cx="200" cy="120" r="80" fill="#DEB887"/><circle cx="200" cy="140" r="75" fill="#F4A460"/><circle cx="200" cy="160" r="70" fill="#DEB887"/><rect x="180" y="100" width="40" height="8" fill="#FFD700"/></svg>`), cuisine: "American", difficulty: "Medium" as const },
+        { title: "Poke Bowl", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="100" ry="70" fill="#FFF8DC"/><rect x="150" y="130" width="30" height="15" fill="#FFA07A"/><rect x="220" y="160" width="25" height="20" fill="#32CD32"/></svg>`), cuisine: "Hawaiian", difficulty: "Easy" as const },
+        { title: "Pizza Margherita", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><circle cx="200" cy="150" r="100" fill="#FF6347"/><circle cx="200" cy="150" r="80" fill="#FFD700"/><circle cx="180" cy="130" r="8" fill="#FFF"/><circle cx="220" cy="170" r="8" fill="#32CD32"/></svg>`), cuisine: "Italian", difficulty: "Hard" as const }
       ],
       [
-        { title: "French Toast", image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&h=300&fit=crop", cuisine: "French", difficulty: "Medium" as const },
-        { title: "Soup & Salad", image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&h=300&fit=crop", cuisine: "Modern", difficulty: "Easy" as const },
-        { title: "Roast Chicken", image: "https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400&h=300&fit=crop", cuisine: "American", difficulty: "Medium" as const }
+        { title: "French Toast", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><rect x="120" y="120" width="160" height="60" fill="#DEB887"/><rect x="130" y="130" width="140" height="40" fill="#F4A460"/><rect x="180" y="100" width="40" height="8" fill="#FFD700"/></svg>`), cuisine: "French", difficulty: "Medium" as const },
+        { title: "Soup & Salad", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="160" cy="150" rx="50" ry="40" fill="#FF6347"/><ellipse cx="240" cy="150" rx="60" ry="50" fill="#90EE90"/></svg>`), cuisine: "Modern", difficulty: "Easy" as const },
+        { title: "Roast Chicken", image: "data:image/svg+xml;base64," + btoa(`<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f8f5f0"/><ellipse cx="200" cy="150" rx="100" ry="60" fill="#D2691E"/><path d="M130 120 Q200 100 270 120 Q250 180 200 190 Q150 180 130 120" fill="#CD853F"/></svg>`), cuisine: "American", difficulty: "Medium" as const }
       ]
     ];
 

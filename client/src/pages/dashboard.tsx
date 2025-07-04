@@ -268,7 +268,7 @@ export default function Dashboard() {
                   7-Day Meal Plan
                 </h2>
                 <div className="flex items-center space-x-3">
-                  <Button variant="outline" disabled className="opacity-50">
+                  <Button variant="outline" onClick={() => setShowPremiumModal(true)}>
                     <History className="h-4 w-4 mr-2" />
                     View Past Plans
                   </Button>

@@ -38,7 +38,7 @@ const cuisineOptions = [
   { 
     value: "italian", 
     label: "Italian", 
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=150&h=100&fit=crop",
+    image: "data:image/svg+xml;base64," + btoa(`<svg width="150" height="100" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg"><rect width="150" height="100" fill="#f8f5f0"/><circle cx="75" cy="50" r="35" fill="#FF6347"/><circle cx="75" cy="50" r="25" fill="#FFD700"/><circle cx="65" cy="40" r="3" fill="#8B4513"/><circle cx="85" cy="40" r="3" fill="#8B4513"/><circle cx="75" cy="60" r="4" fill="#32CD32"/></svg>`),
     dishes: "Pasta, Pizza, Risotto"
   },
   { 
@@ -80,13 +80,13 @@ const cuisineOptions = [
   { 
     value: "vietnamese", 
     label: "Vietnamese", 
-    image: "https://images.unsplash.com/photo-1559314809-0f31657def5e?w=150&h=100&fit=crop",
+    image: "data:image/svg+xml;base64," + btoa(`<svg width="150" height="100" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg"><rect width="150" height="100" fill="#f8f5f0"/><ellipse cx="75" cy="50" rx="40" ry="25" fill="#8B4513"/><path d="M45 40 Q75 35 105 40" stroke="#FFD700" stroke-width="2" fill="none"/><path d="M50 50 Q75 45 100 50" stroke="#FFD700" stroke-width="2" fill="none"/><circle cx="60" cy="45" r="2" fill="#32CD32"/><circle cx="90" cy="55" r="2" fill="#FF6347"/></svg>`),
     dishes: "Pho, Banh Mi, Spring Rolls"
   },
   { 
     value: "french", 
     label: "French", 
-    image: "https://images.unsplash.com/photo-1601972599720-ad8689871ba9?w=150&h=100&fit=crop",
+    image: "data:image/svg+xml;base64," + btoa(`<svg width="150" height="100" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg"><rect width="150" height="100" fill="#f8f5f0"/><path d="M55 30 Q75 20 95 30 Q90 70 75 80 Q60 70 55 30" fill="#DEB887"/><ellipse cx="75" cy="35" rx="15" ry="5" fill="#FFD700"/><circle cx="65" cy="50" r="3" fill="#FF6347"/><circle cx="85" cy="50" r="3" fill="#32CD32"/></svg>`),
     dishes: "Croissants, Coq au Vin, Ratatouille"
   },
   { 
@@ -110,13 +110,13 @@ const cuisineOptions = [
   { 
     value: "middle-eastern", 
     label: "Middle Eastern", 
-    image: "https://images.unsplash.com/photo-1563379091569-18d7e2e1e3cb?w=150&h=100&fit=crop",
+    image: "data:image/svg+xml;base64," + btoa(`<svg width="150" height="100" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg"><rect width="150" height="100" fill="#f8f5f0"/><circle cx="75" cy="50" r="25" fill="#DEB887"/><circle cx="65" cy="40" r="5" fill="#8B4513"/><circle cx="85" cy="40" r="5" fill="#FF6347"/><circle cx="75" cy="60" r="6" fill="#FFD700"/><circle cx="65" cy="60" r="3" fill="#32CD32"/><circle cx="85" cy="60" r="3" fill="#32CD32"/></svg>`),
     dishes: "Falafel, Shawarma, Tabbouleh"
   },
   { 
     value: "caribbean", 
     label: "Caribbean", 
-    image: "https://images.unsplash.com/photo-1547520175-a40e2656ce50?w=150&h=100&fit=crop",
+    image: "data:image/svg+xml;base64," + btoa(`<svg width="150" height="100" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg"><rect width="150" height="100" fill="#f8f5f0"/><ellipse cx="75" cy="50" rx="35" ry="25" fill="#FF6347"/><circle cx="65" cy="40" r="4" fill="#FFD700"/><circle cx="85" cy="40" r="4" fill="#32CD32"/><circle cx="75" cy="60" r="5" fill="#FFA500"/><circle cx="60" cy="55" r="3" fill="#FF1493"/><circle cx="90" cy="55" r="3" fill="#FF1493"/></svg>`),
     dishes: "Jerk Chicken, Rice & Beans, Plantains"
   },
 ];
