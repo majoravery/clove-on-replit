@@ -20,6 +20,7 @@ import type { DashboardData } from "@shared/schema";
 
 export default function Dashboard() {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [premiumFeature, setPremiumFeature] = useState<"drag" | "pastPlans">("drag");
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
   const [showOnboarding, setShowOnboarding] = useState(() => {
@@ -268,7 +269,10 @@ export default function Dashboard() {
                   7-Day Meal Plan
                 </h2>
                 <div className="flex items-center space-x-3">
-                  <Button variant="outline" onClick={() => setShowPremiumModal(true)}>
+                  <Button variant="outline" onClick={() => {
+                    setPremiumFeature("pastPlans");
+                    setShowPremiumModal(true);
+                  }}>
                     <History className="h-4 w-4 mr-2" />
                     View Past Plans
                   </Button>
