@@ -123,11 +123,21 @@ export class MemStorage implements IStorage {
           textColor: "text-blue-800"
         },
         {
+          id: "2",
+          type: "shopping",
+          title: "Buy more eggs",
+          description: "Running low",
+          time: "",
+          bgColor: "bg-orange-50",
+          borderColor: "border-orange-200",
+          textColor: "text-orange-800"
+        },
+        {
           id: "3",
           type: "prep",
-          title: "Prep vegetables",
-          description: "For tomorrow's stir-fry",
-          time: "20 min",
+          title: "Pickle onions for tomorrow",
+          description: "For Wednesday's meal",
+          time: "10 min",
           bgColor: "bg-green-50",
           borderColor: "border-green-200",
           textColor: "text-green-800"
@@ -135,7 +145,7 @@ export class MemStorage implements IStorage {
       ],
       weekDays: weekDays.map((day, dayIndex) => ({
         ...day,
-        actionItems: [],
+        actionItems: dayIndex === 0 ? ["Marinate chicken"] : dayIndex === 2 ? ["Pickle onions for tomorrow"] : dayIndex === 4 ? ["Slow cook beef"] : [],
         meals: [
           { id: `${dayIndex * 3 + 1}`, type: "breakfast" as const, ...demoMeals[dayIndex][0], dayId: day.id },
           { id: `${dayIndex * 3 + 2}`, type: "lunch" as const, ...demoMeals[dayIndex][1], dayId: day.id },

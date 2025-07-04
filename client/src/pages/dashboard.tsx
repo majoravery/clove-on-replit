@@ -214,11 +214,7 @@ export default function Dashboard() {
             <div className="bg-white border-b border-gray-200 p-6" data-tutorial="tasks">
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                 <Clock className="h-5 w-5 text-accent mr-2" />
-                Next Up To Do {(() => {
-                  const realTasks = dashboardData.tasks.filter(task => task.id !== "placeholder");
-                  const completedRealTasks = realTasks.filter(task => completedTasks.has(task.id)).length;
-                  return completedRealTasks >= realTasks.length ? "– you're all caught up!" : `(${realTasks.length - completedRealTasks})`;
-                })()}
+                Next Up To Do
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {dashboardData.tasks.map((task) => {
