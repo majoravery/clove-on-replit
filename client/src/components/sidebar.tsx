@@ -110,23 +110,32 @@ export default function Sidebar({ inventory, tasks }: SidebarProps) {
           <Package className="h-4 w-4 text-gray-500 mr-2" />
           Current Inventory
         </h2>
-        <div className="space-y-2">
-          {normalStockItems.map((item) => {
-            const IconComponent = getIcon(item.icon);
-            
-            return (
-              <div key={item.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
-                    <IconComponent className="text-gray-500 h-3 w-3" />
+        
+        {inventory.length === 0 ? (
+          <div className="text-center py-8">
+            <Package className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+            <p className="text-sm text-gray-500 mb-4">Your inventory is empty</p>
+            <p className="text-xs text-gray-400 mb-4">Add items to track what you have at home</p>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {normalStockItems.map((item) => {
+              const IconComponent = getIcon(item.icon);
+              
+              return (
+                <div key={item.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
+                      <IconComponent className="text-gray-500 h-3 w-3" />
+                    </div>
+                    <span className="text-sm text-gray-700">{item.name}</span>
                   </div>
-                  <span className="text-sm text-gray-700">{item.name}</span>
+                  <span className="text-sm text-gray-500">{item.quantity}</span>
                 </div>
-                <span className="text-sm text-gray-500">{item.quantity}</span>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
         
         <Button variant="outline" className="w-full mt-4">
           <Plus className="h-4 w-4 mr-2" />

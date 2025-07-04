@@ -50,4 +50,24 @@ router.post("/api/skip-meal", async (req, res) => {
   }
 });
 
+// Set empty state
+router.post("/api/set-empty-state", async (req, res) => {
+  try {
+    storage.setEmptyState();
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to set empty state" });
+  }
+});
+
+// Set demo state
+router.post("/api/set-demo-state", async (req, res) => {
+  try {
+    storage.setDemoState();
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to set demo state" });
+  }
+});
+
 export default router;

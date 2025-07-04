@@ -14,12 +14,12 @@ export class MemStorage implements IStorage {
         {
           id: "placeholder",
           type: "prep",
-          title: "No tasks",
-          description: "Nothing to do for now!",
+          title: "Nothing to do for now!",
+          description: "",
           time: "",
           bgColor: "bg-gray-50",
           borderColor: "border-gray-200",
-          textColor: "text-gray-600"
+          textColor: "text-gray-500"
         }
       ],
       weekDays: [
@@ -27,339 +27,398 @@ export class MemStorage implements IStorage {
           id: "monday",
           name: "Monday",
           date: "Dec 23",
+          isToday: false,
+          actionItems: [],
           meals: [
-            { id: "mon-breakfast", type: "breakfast", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
-            { id: "mon-lunch", type: "lunch", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
-            { id: "mon-dinner", type: "dinner", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" }
+            { id: "mon-breakfast", type: "breakfast", title: "Plan your breakfast", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
+            { id: "mon-lunch", type: "lunch", title: "Plan your lunch", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
+            { id: "mon-dinner", type: "dinner", title: "Plan your dinner", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" }
           ]
         },
         {
           id: "tuesday", 
-          dayName: "Tuesday",
+          name: "Tuesday",
           date: "Dec 24",
+          isToday: false,
+          actionItems: [],
           meals: [
-            { id: "tue-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "tue-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "tue-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+            { id: "tue-breakfast", type: "breakfast", title: "Plan your breakfast", image: "", cuisine: "", difficulty: "Easy", dayId: "tuesday" },
+            { id: "tue-lunch", type: "lunch", title: "Plan your lunch", image: "", cuisine: "", difficulty: "Easy", dayId: "tuesday" },
+            { id: "tue-dinner", type: "dinner", title: "Plan your dinner", image: "", cuisine: "", difficulty: "Easy", dayId: "tuesday" }
           ]
         },
         {
           id: "wednesday",
-          dayName: "Wednesday", 
+          name: "Wednesday", 
           date: "Dec 25",
+          isToday: true,
+          actionItems: [],
           meals: [
-            { id: "wed-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "wed-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "wed-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+            { id: "wed-breakfast", type: "breakfast", title: "Plan your breakfast", image: "", cuisine: "", difficulty: "Easy", dayId: "wednesday" },
+            { id: "wed-lunch", type: "lunch", title: "Plan your lunch", image: "", cuisine: "", difficulty: "Easy", dayId: "wednesday" },
+            { id: "wed-dinner", type: "dinner", title: "Plan your dinner", image: "", cuisine: "", difficulty: "Easy", dayId: "wednesday" }
           ]
         },
         {
           id: "thursday",
-          dayName: "Thursday",
-          date: "Dec 26", 
+          name: "Thursday",
+          date: "Dec 26",
+          isToday: false,
+          actionItems: [],
           meals: [
-            { id: "thu-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "thu-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "thu-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+            { id: "thu-breakfast", type: "breakfast", title: "Plan your breakfast", image: "", cuisine: "", difficulty: "Easy", dayId: "thursday" },
+            { id: "thu-lunch", type: "lunch", title: "Plan your lunch", image: "", cuisine: "", difficulty: "Easy", dayId: "thursday" },
+            { id: "thu-dinner", type: "dinner", title: "Plan your dinner", image: "", cuisine: "", difficulty: "Easy", dayId: "thursday" }
           ]
         },
         {
           id: "friday",
-          dayName: "Friday",
+          name: "Friday",
           date: "Dec 27",
+          isToday: false,
+          actionItems: [],
           meals: [
-            { id: "fri-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "fri-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "fri-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+            { id: "fri-breakfast", type: "breakfast", title: "Plan your breakfast", image: "", cuisine: "", difficulty: "Easy", dayId: "friday" },
+            { id: "fri-lunch", type: "lunch", title: "Plan your lunch", image: "", cuisine: "", difficulty: "Easy", dayId: "friday" },
+            { id: "fri-dinner", type: "dinner", title: "Plan your dinner", image: "", cuisine: "", difficulty: "Easy", dayId: "friday" }
           ]
         },
         {
           id: "saturday",
-          dayName: "Saturday", 
+          name: "Saturday",
           date: "Dec 28",
+          isToday: false,
+          actionItems: [],
           meals: [
-            { id: "sat-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "sat-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "sat-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+            { id: "sat-breakfast", type: "breakfast", title: "Plan your breakfast", image: "", cuisine: "", difficulty: "Easy", dayId: "saturday" },
+            { id: "sat-lunch", type: "lunch", title: "Plan your lunch", image: "", cuisine: "", difficulty: "Easy", dayId: "saturday" },
+            { id: "sat-dinner", type: "dinner", title: "Plan your dinner", image: "", cuisine: "", difficulty: "Easy", dayId: "saturday" }
           ]
         },
         {
           id: "sunday",
-          dayName: "Sunday",
-          date: "Dec 29", 
+          name: "Sunday",
+          date: "Dec 29",
+          isToday: false,
+          actionItems: [],
           meals: [
-            { id: "sun-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "sun-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
-            { id: "sun-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+            { id: "sun-breakfast", type: "breakfast", title: "Plan your breakfast", image: "", cuisine: "", difficulty: "Easy", dayId: "sunday" },
+            { id: "sun-lunch", type: "lunch", title: "Plan your lunch", image: "", cuisine: "", difficulty: "Easy", dayId: "sunday" },
+            { id: "sun-dinner", type: "dinner", title: "Plan your dinner", image: "", cuisine: "", difficulty: "Easy", dayId: "sunday" }
           ]
         }
       ],
-      regenerationsLeft: 3,
+      regenerationsLeft: 3
     };
   }
 
   private getFullDemoData(): DashboardData {
     return {
-    inventory: [
-      {
-        id: "1",
-        name: "Carrots",
-        quantity: "2 left",
-        status: "critical",
-        icon: "Carrot",
-      },
-      {
-        id: "2",
-        name: "Whole Wheat Bread",
-        quantity: "3 slices left",
-        status: "low",
-        icon: "Wheat",
-      },
-      {
-        id: "3",
-        name: "Apples",
-        quantity: "8",
-        status: "normal",
-        icon: "Apple",
-      },
-      {
-        id: "4",
-        name: "Cheddar Cheese",
-        quantity: "1 block",
-        status: "normal",
-        icon: "Milk",
-      },
-      {
-        id: "5",
-        name: "Eggs",
-        quantity: "6",
-        status: "normal",
-        icon: "Egg",
-      },
-      {
-        id: "6",
-        name: "Salmon Fillet",
-        quantity: "2 fillets",
-        status: "normal",
-        icon: "Fish",
-      },
-      {
-        id: "7",
-        name: "Spinach",
-        quantity: "1 bag",
-        status: "normal",
-        icon: "Leaf",
-      },
-    ],
-    tasks: [
-      {
-        id: "1",
-        type: "prep",
-        title: "Marinate chicken for tomorrow's lunch",
-        description: "Season and marinate chicken breast for Thai basil stir-fry",
-        time: "2 hours",
-        bgColor: "bg-blue-50",
-        textColor: "text-blue-600",
-        borderColor: "border-blue-200",
-      },
-      {
-        id: "2",
-        type: "shopping",
-        title: "Buy missing ingredients",
-        description: "Pick up carrots and bread for this week's meals",
-        time: "Today",
-        bgColor: "bg-amber-50",
-        textColor: "text-amber-600",
-        borderColor: "border-amber-200",
-      },
-      {
-        id: "3",
-        type: "prep",
-        title: "Defrost salmon",
-        description: "Move salmon from freezer to fridge for Friday dinner",
-        time: "Tomorrow",
-        bgColor: "bg-green-50",
-        textColor: "text-green-600",
-        borderColor: "border-green-200",
-      },
-    ],
-    weekDays: [
-      {
-        id: "today",
-        name: "Today",
-        date: "Dec 15",
-        isToday: true,
-        actionItems: ["Buy carrots & bread"],
-        meals: [
-          {
-            id: "breakfast-1",
-            title: "Berry Pancakes",
-            cuisine: "American",
-            difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&fit=crop",
-            type: "breakfast",
-            dayId: "today",
-          },
-          {
-            id: "lunch-1",
-            title: "Greek Salad",
-            cuisine: "Mediterranean",
-            difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop",
-            type: "lunch",
-            dayId: "today",
-          },
-          {
-            id: "dinner-1",
-            title: "Herb Salmon",
-            cuisine: "Mediterranean",
-            difficulty: "Medium",
-            image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop",
-            type: "dinner",
-            dayId: "today",
-          },
-        ],
-      },
-      {
-        id: "tomorrow",
-        name: "Tomorrow",
-        date: "Dec 16",
-        isToday: false,
-        actionItems: ["Marinate chicken (evening)"],
-        meals: [
-          {
-            id: "breakfast-2",
-            title: "Fruit Oatmeal",
-            cuisine: "Healthy",
-            difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&h=300&fit=crop",
-            type: "breakfast",
-            dayId: "tomorrow",
-          },
-          {
-            id: "lunch-2",
-            title: "Chicken Sandwich",
-            cuisine: "American",
-            difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1606755962773-d324e503d3d1?w=400&h=300&fit=crop",
-            type: "lunch",
-            dayId: "tomorrow",
-          },
-          {
-            id: "dinner-2",
-            title: "Veggie Stir-fry",
-            cuisine: "Asian",
-            difficulty: "Medium",
-            image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop",
-            type: "dinner",
-            dayId: "tomorrow",
-          },
-        ],
-      },
-      {
-        id: "wednesday",
-        name: "Wednesday",
-        date: "Dec 17",
-        isToday: false,
-        actionItems: [],
-        meals: [
-          {
-            id: "dinner-3",
-            title: "Tomato Soup",
-            cuisine: "Comfort",
-            difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&fit=crop",
-            type: "dinner",
-            dayId: "wednesday",
-          },
-        ],
-      },
-      {
-        id: "thursday",
-        name: "Thursday",
-        date: "Dec 18",
-        isToday: false,
-        actionItems: [],
-        meals: [
-          {
-            id: "dinner-4",
-            title: "Thai Curry",
-            cuisine: "Thai",
-            difficulty: "Medium",
-            image: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&fit=crop",
-            type: "dinner",
-            dayId: "thursday",
-          },
-        ],
-      },
-      {
-        id: "friday",
-        name: "Friday",
-        date: "Dec 19",
-        isToday: false,
-        actionItems: ["Defrost salmon"],
-        meals: [
-          {
-            id: "dinner-5",
-            title: "Herb Pasta",
-            cuisine: "Italian",
-            difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?w=400&h=300&fit=crop",
-            type: "dinner",
-            dayId: "friday",
-          },
-        ],
-      },
-      {
-        id: "saturday",
-        name: "Saturday",
-        date: "Dec 20",
-        isToday: false,
-        actionItems: [],
-        meals: [
-          {
-            id: "dinner-6",
-            title: "Gourmet Burger",
-            cuisine: "American",
-            difficulty: "Medium",
-            image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop",
-            type: "dinner",
-            dayId: "saturday",
-          },
-        ],
-      },
-      {
-        id: "sunday",
-        name: "Sunday",
-        date: "Dec 21",
-        isToday: false,
-        actionItems: [],
-        meals: [
-          {
-            id: "breakfast-7",
-            title: "Full Breakfast",
-            cuisine: "American",
-            difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop",
-            type: "breakfast",
-            dayId: "sunday",
-          },
-        ],
-      },
-    ],
-    regenerationsLeft: 3,
+      inventory: [
+        { id: "chicken", name: "Chicken Breast", quantity: "2 lbs", status: "normal", icon: "🍗" },
+        { id: "tomatoes", name: "Cherry Tomatoes", quantity: "1 container", status: "normal", icon: "🍅" },
+        { id: "pasta", name: "Spaghetti", quantity: "1 box", status: "normal", icon: "🍝" },
+        { id: "eggs", name: "Eggs", quantity: "6 count", status: "low", icon: "🥚" },
+        { id: "milk", name: "Milk", quantity: "1 gallon", status: "low", icon: "🥛" },
+        { id: "bread", name: "Sourdough Bread", quantity: "1 loaf", status: "normal", icon: "🍞" }
+      ],
+      tasks: [
+        {
+          id: "1",
+          type: "prep",
+          title: "Marinate chicken",
+          description: "For tonight's dinner",
+          time: "15 min",
+          bgColor: "bg-blue-50",
+          borderColor: "border-blue-200",
+          textColor: "text-blue-800"
+        },
+        {
+          id: "2",
+          type: "shopping",
+          title: "Buy more eggs",
+          description: "Running low",
+          time: "",
+          bgColor: "bg-orange-50",
+          borderColor: "border-orange-200",
+          textColor: "text-orange-800"
+        },
+        {
+          id: "3",
+          type: "prep",
+          title: "Prep vegetables",
+          description: "For tomorrow's stir-fry",
+          time: "20 min",
+          bgColor: "bg-green-50",
+          borderColor: "border-green-200",
+          textColor: "text-green-800"
+        }
+      ],
+      weekDays: [
+        {
+          id: "monday",
+          name: "Monday",
+          date: "Dec 23",
+          isToday: false,
+          actionItems: ["Shop for eggs", "Prep vegetables"],
+          meals: [
+            {
+              id: "1",
+              type: "breakfast",
+              title: "Avocado Toast",
+              image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop",
+              cuisine: "Modern",
+              difficulty: "Easy",
+              dayId: "monday"
+            },
+            {
+              id: "2",
+              type: "lunch",
+              title: "Caesar Salad",
+              image: "https://images.unsplash.com/photo-1551248429-40975aa4de74?w=400&h=300&fit=crop",
+              cuisine: "Mediterranean",
+              difficulty: "Easy",
+              dayId: "monday"
+            },
+            {
+              id: "3",
+              type: "dinner",
+              title: "Grilled Chicken",
+              image: "https://images.unsplash.com/photo-1598515213692-d4eee2a31304?w=400&h=300&fit=crop",
+              cuisine: "American",
+              difficulty: "Medium",
+              dayId: "monday"
+            }
+          ]
+        },
+        {
+          id: "tuesday",
+          name: "Tuesday",
+          date: "Dec 24",
+          isToday: false,
+          actionItems: [],
+          meals: [
+            {
+              id: "4",
+              type: "breakfast",
+              title: "Greek Yogurt Bowl",
+              image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop",
+              cuisine: "Mediterranean",
+              difficulty: "Easy",
+              dayId: "tuesday"
+            },
+            {
+              id: "5",
+              type: "lunch",
+              title: "Quinoa Salad",
+              image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop",
+              cuisine: "Modern",
+              difficulty: "Easy",
+              dayId: "tuesday"
+            },
+            {
+              id: "6",
+              type: "dinner",
+              title: "Pasta Carbonara",
+              image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop",
+              cuisine: "Italian",
+              difficulty: "Medium",
+              dayId: "tuesday"
+            }
+          ]
+        },
+        {
+          id: "wednesday",
+          name: "Wednesday",
+          date: "Dec 25",
+          isToday: true,
+          actionItems: ["Marinate chicken", "Prep vegetables"],
+          meals: [
+            {
+              id: "7",
+              type: "breakfast",
+              title: "Scrambled Eggs",
+              image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop",
+              cuisine: "American",
+              difficulty: "Easy",
+              dayId: "wednesday"
+            },
+            {
+              id: "8",
+              type: "lunch",
+              title: "Caprese Sandwich",
+              image: "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop",
+              cuisine: "Italian",
+              difficulty: "Easy",
+              dayId: "wednesday"
+            },
+            {
+              id: "9",
+              type: "dinner",
+              title: "Chicken Stir-fry",
+              image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop",
+              cuisine: "Asian",
+              difficulty: "Medium",
+              dayId: "wednesday"
+            }
+          ]
+        },
+        {
+          id: "thursday",
+          name: "Thursday",
+          date: "Dec 26",
+          isToday: false,
+          actionItems: [],
+          meals: [
+            {
+              id: "10",
+              type: "breakfast",
+              title: "Oatmeal",
+              image: "https://images.unsplash.com/photo-1574168280036-9cc8bbc2e4d7?w=400&h=300&fit=crop",
+              cuisine: "Modern",
+              difficulty: "Easy",
+              dayId: "thursday"
+            },
+            {
+              id: "11",
+              type: "lunch",
+              title: "Turkey Wrap",
+              image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop",
+              cuisine: "American",
+              difficulty: "Easy",
+              dayId: "thursday"
+            },
+            {
+              id: "12",
+              type: "dinner",
+              title: "Salmon with Rice",
+              image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop",
+              cuisine: "Asian",
+              difficulty: "Medium",
+              dayId: "thursday"
+            }
+          ]
+        },
+        {
+          id: "friday",
+          name: "Friday",
+          date: "Dec 27",
+          isToday: false,
+          actionItems: [],
+          meals: [
+            {
+              id: "13",
+              type: "breakfast",
+              title: "Smoothie Bowl",
+              image: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400&h=300&fit=crop",
+              cuisine: "Modern",
+              difficulty: "Easy",
+              dayId: "friday"
+            },
+            {
+              id: "14",
+              type: "lunch",
+              title: "Chicken Salad",
+              image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop",
+              cuisine: "American",
+              difficulty: "Easy",
+              dayId: "friday"
+            },
+            {
+              id: "15",
+              type: "dinner",
+              title: "Beef Tacos",
+              image: "https://images.unsplash.com/photo-1565299585323-38174c26dee0?w=400&h=300&fit=crop",
+              cuisine: "Mexican",
+              difficulty: "Medium",
+              dayId: "friday"
+            }
+          ]
+        },
+        {
+          id: "saturday",
+          name: "Saturday",
+          date: "Dec 28",
+          isToday: false,
+          actionItems: [],
+          meals: [
+            {
+              id: "16",
+              type: "breakfast",
+              title: "Pancakes",
+              image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop",
+              cuisine: "American",
+              difficulty: "Medium",
+              dayId: "saturday"
+            },
+            {
+              id: "17",
+              type: "lunch",
+              title: "Poke Bowl",
+              image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop",
+              cuisine: "Hawaiian",
+              difficulty: "Easy",
+              dayId: "saturday"
+            },
+            {
+              id: "18",
+              type: "dinner",
+              title: "Pizza Margherita",
+              image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop",
+              cuisine: "Italian",
+              difficulty: "Hard",
+              dayId: "saturday"
+            }
+          ]
+        },
+        {
+          id: "sunday",
+          name: "Sunday",
+          date: "Dec 29",
+          isToday: false,
+          actionItems: [],
+          meals: [
+            {
+              id: "19",
+              type: "breakfast",
+              title: "French Toast",
+              image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&h=300&fit=crop",
+              cuisine: "French",
+              difficulty: "Medium",
+              dayId: "sunday"
+            },
+            {
+              id: "20",
+              type: "lunch",
+              title: "Soup & Salad",
+              image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&h=300&fit=crop",
+              cuisine: "Modern",
+              difficulty: "Easy",
+              dayId: "sunday"
+            },
+            {
+              id: "21",
+              type: "dinner",
+              title: "Roast Chicken",
+              image: "https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=400&h=300&fit=crop",
+              cuisine: "American",
+              difficulty: "Medium",
+              dayId: "sunday"
+            }
+          ]
+        }
+      ],
+      regenerationsLeft: 2
     };
   }
 
   private data: DashboardData;
 
   constructor() {
-    this.data = this.getFullDemoData();
+    this.data = this.getEmptyState();
   }
 
   async getDashboardData(): Promise<DashboardData> {
-    // In a real app, we'd check the user's completion status
-    // For demo purposes, we'll check if this is a reset request by checking a header
     return this.data;
   }
 
@@ -368,9 +427,14 @@ export class MemStorage implements IStorage {
   }
 
   async skipMeal(mealId: string): Promise<void> {
-    // Find and remove the meal
+    // Find and remove the meal from the appropriate day
     for (const day of this.data.weekDays) {
-      day.meals = day.meals.filter(meal => meal.id !== mealId);
+      const mealIndex = day.meals.findIndex(meal => meal.id === mealId);
+      if (mealIndex !== -1) {
+        // Remove the meal
+        day.meals.splice(mealIndex, 1);
+        break;
+      }
     }
   }
 

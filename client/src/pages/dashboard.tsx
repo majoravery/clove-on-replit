@@ -34,6 +34,14 @@ export default function Dashboard() {
     queryKey: ["/api/dashboard"],
   });
 
+  // Check if setup is completed and switch to demo state
+  const setupCompletedMutation = useMutation({
+    mutationFn: () => apiRequest("/api/set-demo-state", "POST"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
+    },
+  });
+
   const regenerateMutation = useMutation({
     mutationFn: () => apiRequest("/api/regenerate", "POST"),
     onMutate: () => {
@@ -104,6 +112,17 @@ export default function Dashboard() {
     });
   };
 
+  const resetAppMutation = useMutation({
+    mutationFn: () => apiRequest("/api/set-empty-state", "POST"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
+      toast({
+        title: "App reset",
+        description: "The app has been reset to empty state for testing.",
+      });
+    },
+  });
+
   const handleResetApp = () => {
     if (confirm("Are you sure you want to reset the app to empty for testing? This will clear all data.")) {
       localStorage.clear();
@@ -112,13 +131,8 @@ export default function Dashboard() {
       setShowInventorySetup(false);
       setCompletedTasks(new Set());
       
-      // Invalidate query to refresh with empty state
-      queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
-      
-      toast({
-        title: "App reset",
-        description: "The app has been reset to empty state for testing.",
-      });
+      // Switch to empty state
+      resetAppMutation.mutate();
     }
   };
 
@@ -328,7 +342,12 @@ export default function Dashboard() {
 
         <InventorySetup
           open={showInventorySetup}
-          onComplete={() => setShowInventorySetup(false)}
+          onComplete={() => {
+            setShowInventorySetup(false);
+            localStorage.setItem('setupCompleted', 'true');
+            // Switch to demo state after inventory setup completion
+            setupCompletedMutation.mutate();
+          }}
         />
       </div>
     </DndProvider>

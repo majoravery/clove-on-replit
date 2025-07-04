@@ -11,6 +11,8 @@ interface MealCardProps {
 }
 
 export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps) {
+  const isPlaceholder = !meal.image || meal.title.startsWith("Plan your");
+  
   const [{ isDragging }, drag] = useDrag({
     type: "meal",
     item: { 
@@ -19,11 +21,14 @@ export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps)
       dayId: meal.dayId 
     },
     end: () => {
-      onDragEnd();
+      if (!isPlaceholder) {
+        onDragEnd();
+      }
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    canDrag: !isPlaceholder,
   });
 
   const getDifficultyColor = (difficulty: string) => {
@@ -39,16 +44,44 @@ export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps)
     }
   };
 
+  if (isPlaceholder) {
+    return (
+      <div className="meal-card bg-gray-50 border-2 border-dashed border-gray-200 rounded-lg p-3 transition-all">
+        <Badge variant="outline" className="text-xs uppercase mb-2">
+          {meal.type}
+        </Badge>
+        <div className="w-full h-20 bg-gray-100 rounded mb-2 flex items-center justify-center">
+          <span className="text-xs text-gray-400">No meal planned</span>
+        </div>
+        <h4 className="text-sm font-medium text-gray-500 mb-1">{meal.title}</h4>
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-gray-400">--</span>
+          <span className="text-xs text-gray-400">--</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       ref={drag}
-      className={`meal-card bg-gray-50 rounded-lg p-3 cursor-move hover:shadow-md transition-all ${
+      className={`meal-card bg-white rounded-lg p-3 cursor-move hover:shadow-md transition-all border border-gray-200 ${
         isDragging ? "opacity-50" : ""
       }`}
     >
-      <Badge variant="outline" className="text-xs uppercase mb-2">
-        {meal.type}
-      </Badge>
+      <div className="flex items-center justify-between mb-2">
+        <Badge variant="outline" className="text-xs uppercase">
+          {meal.type}
+        </Badge>
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="h-6 w-6 p-0 hover:bg-red-50"
+          onClick={() => onSkipMeal(meal.id)}
+        >
+          <X className="h-3 w-3 text-gray-400 hover:text-red-500" />
+        </Button>
+      </div>
       <img 
         src={meal.image} 
         alt={meal.title}
