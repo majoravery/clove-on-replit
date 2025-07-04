@@ -146,41 +146,13 @@ export default function Dashboard() {
         <div className="flex-1 flex overflow-hidden">
           {/* Main Content */}
           <div className="flex-1 flex flex-col overflow-hidden">
-            {/* Actions Bar */}
-            <div className="bg-white border-b border-gray-200 p-6">
-              <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-500">Plan your week, reduce waste, save money</p>
-                <div className="flex items-center space-x-3">
-                  <Button variant="outline" disabled className="opacity-50">
-                    <History className="h-4 w-4 mr-2" />
-                    View Past Plans
-                  </Button>
-                  <Button 
-                    onClick={() => regenerateMutation.mutate()}
-                    disabled={dashboardData.regenerationsLeft === 0 || isRegenerating}
-                    className="bg-primary hover:bg-primary/90"
-                  >
-                    {isRegenerating ? (
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    ) : (
-                      <RefreshCw className="h-4 w-4 mr-2" />
-                    )}
-                    {isRegenerating 
-                      ? "Generating..." 
-                      : dashboardData.regenerationsLeft === 0 
-                        ? "No regenerations left"
-                        : `Regenerate Plan (${dashboardData.regenerationsLeft} left)`
-                    }
-                  </Button>
-                </div>
-              </div>
-            </div>
+
 
             {/* Next Up To Do Section */}
             <div className="bg-white border-b border-gray-200 p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                 <Clock className="h-5 w-5 text-accent mr-2" />
-                Next Up To Do ({dashboardData.tasks.length})
+                Next Up To Do {completedTasks.size >= dashboardData.tasks.length ? "– you're all caught up!" : `(${dashboardData.tasks.length - completedTasks.size})`}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {dashboardData.tasks.map((task) => {
@@ -222,11 +194,34 @@ export default function Dashboard() {
 
             {/* 7-Day Calendar */}
             <div className="flex-1 p-6 bg-gray-50 overflow-auto">
-              <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-gray-900 flex items-center">
                   <Calendar className="h-5 w-5 text-accent mr-2" />
                   7-Day Meal Plan
                 </h2>
+                <div className="flex items-center space-x-3">
+                  <Button variant="outline" disabled className="opacity-50">
+                    <History className="h-4 w-4 mr-2" />
+                    View Past Plans
+                  </Button>
+                  <Button 
+                    onClick={() => regenerateMutation.mutate()}
+                    disabled={dashboardData.regenerationsLeft === 0 || isRegenerating}
+                    className="bg-primary hover:bg-primary/90"
+                  >
+                    {isRegenerating ? (
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    ) : (
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                    )}
+                    {isRegenerating 
+                      ? "Generating..." 
+                      : dashboardData.regenerationsLeft === 0 
+                        ? "No regenerations left"
+                        : `Regenerate Plan (${dashboardData.regenerationsLeft} left)`
+                    }
+                  </Button>
+                </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">

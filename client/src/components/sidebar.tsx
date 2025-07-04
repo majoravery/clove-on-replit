@@ -66,20 +66,11 @@ export default function Sidebar({ inventory, tasks }: SidebarProps) {
   };
 
   return (
-    <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
-      {/* Header */}
-      <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <Leaf className="text-white h-4 w-4" />
-          </div>
-          <h1 className="text-xl font-bold text-gray-900">Clove</h1>
-        </div>
-      </div>
+    <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
 
       {/* Low Stock Alerts */}
       {lowStockItems.length > 0 && (
-        <div className="p-6 border-b border-gray-200">
+        <div className="p-6 border-b border-gray-200 mt-6">
           <h2 className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
             <AlertTriangle className="h-4 w-4 text-accent mr-2" />
             Running Low
@@ -114,7 +105,7 @@ export default function Sidebar({ inventory, tasks }: SidebarProps) {
       )}
 
       {/* Current Inventory */}
-      <div className="flex-1 p-6 overflow-y-auto">
+      <div className={`flex-1 p-6 overflow-y-auto ${lowStockItems.length === 0 ? 'mt-6' : ''}`}>
         <h2 className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
           <Package className="h-4 w-4 text-gray-500 mr-2" />
           Current Inventory

@@ -46,38 +46,22 @@ export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps)
         isDragging ? "opacity-50" : ""
       }`}
     >
+      <Badge variant="outline" className="text-xs uppercase mb-2">
+        {meal.type}
+      </Badge>
       <img 
         src={meal.image} 
         alt={meal.title}
         className="w-full h-20 object-cover rounded mb-2"
         loading="lazy"
       />
-      <div className="flex items-center justify-between mb-2">
-        <Badge variant="outline" className="text-xs uppercase">
-          {meal.type}
-        </Badge>
+      <h4 className="text-sm font-medium text-gray-900 mb-1">{meal.title}</h4>
+      <div className="flex items-center justify-between">
+        <span className="text-xs text-gray-500">{meal.cuisine}</span>
         <span className={`text-xs ${getDifficultyColor(meal.difficulty)}`}>
           {meal.difficulty}
         </span>
       </div>
-      <h4 className="text-sm font-medium text-gray-900 mb-1">{meal.title}</h4>
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-gray-500">{meal.cuisine}</span>
-      </div>
-      {(meal.type === "dinner" || meal.type === "lunch") && (
-        <Button
-          variant="ghost"
-          size="sm"
-          className="mt-2 text-xs text-red-600 hover:text-red-700 hover:bg-red-50 p-1 h-auto"
-          onClick={(e) => {
-            e.stopPropagation();
-            onSkipMeal(meal.id);
-          }}
-        >
-          <X className="h-3 w-3 mr-1" />
-          Skip Meal
-        </Button>
-      )}
     </div>
   );
 }
