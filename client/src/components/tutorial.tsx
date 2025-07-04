@@ -177,7 +177,7 @@ export default function Tutorial({ open, onComplete }: TutorialProps) {
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <Button
                 variant="outline"
                 onClick={handleBack}
@@ -188,13 +188,13 @@ export default function Tutorial({ open, onComplete }: TutorialProps) {
                 Back
               </Button>
 
-              <Button onClick={handleSkip} variant="ghost" size="sm" className="text-gray-500">
+              <Button onClick={handleSkip} variant="ghost" size="sm" className="text-gray-500 flex-shrink-0">
                 Skip tour
               </Button>
 
-              <Button onClick={handleNext} size="sm">
+              <Button onClick={handleNext} size="sm" className="flex-shrink-0">
                 {currentStep === tutorialSteps.length - 1 ? (
-                  "Let's set up your inventory"
+                  "Setup Inventory"
                 ) : (
                   <>
                     Next
