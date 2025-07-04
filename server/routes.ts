@@ -50,26 +50,4 @@ router.post("/api/skip-meal", async (req, res) => {
   }
 });
 
-// Switch to demo state after inventory setup
-router.post("/api/activate-demo", async (req, res) => {
-  try {
-    storage.setDemoState();
-    const data = await storage.getDashboardData();
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to activate demo state" });
-  }
-});
-
-// Reset to empty state
-router.post("/api/reset", async (req, res) => {
-  try {
-    storage.setEmptyState();
-    const data = await storage.getDashboardData();
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to reset state" });
-  }
-});
-
 export default router;

@@ -27,9 +27,11 @@ export class MemStorage implements IStorage {
           id: "monday",
           name: "Monday",
           date: "Dec 23",
-          isToday: false,
-          actionItems: [],
-          meals: []
+          meals: [
+            { id: "mon-breakfast", type: "breakfast", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
+            { id: "mon-lunch", type: "lunch", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
+            { id: "mon-dinner", type: "dinner", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" }
+          ]
         },
         {
           id: "tuesday", 
@@ -194,7 +196,7 @@ export class MemStorage implements IStorage {
             title: "Berry Pancakes",
             cuisine: "American",
             difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=400&h=300&fit=crop&crop=center",
+            image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&fit=crop",
             type: "breakfast",
             dayId: "today",
           },
@@ -239,7 +241,7 @@ export class MemStorage implements IStorage {
             title: "Chicken Sandwich",
             cuisine: "American",
             difficulty: "Easy",
-            image: "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=400&h=300&fit=crop&crop=center",
+            image: "https://images.unsplash.com/photo-1606755962773-d324e503d3d1?w=400&h=300&fit=crop",
             type: "lunch",
             dayId: "tomorrow",
           },
@@ -352,13 +354,12 @@ export class MemStorage implements IStorage {
   private data: DashboardData;
 
   constructor() {
-    // Start with empty state by default
-    this.data = this.getEmptyState();
+    this.data = this.getFullDemoData();
   }
 
   async getDashboardData(): Promise<DashboardData> {
-    // Check if setup has been completed to determine which data to return
-    // In a real app, this would check user's database state
+    // In a real app, we'd check the user's completion status
+    // For demo purposes, we'll check if this is a reset request by checking a header
     return this.data;
   }
 
