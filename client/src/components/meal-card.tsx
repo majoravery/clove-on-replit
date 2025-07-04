@@ -53,11 +53,6 @@ export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps)
         <div className="w-full h-20 bg-gray-100 rounded mb-2 flex items-center justify-center">
           <span className="text-xs text-gray-400">No meal planned</span>
         </div>
-        <h4 className="text-sm font-medium text-gray-500 mb-1">{meal.title}</h4>
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-gray-400">--</span>
-          <span className="text-xs text-gray-400">--</span>
-        </div>
       </div>
     );
   }

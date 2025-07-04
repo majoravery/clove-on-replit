@@ -202,21 +202,29 @@ export default function Dashboard() {
             <div className="bg-white border-b border-gray-200 p-6" data-tutorial="tasks">
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                 <Clock className="h-5 w-5 text-accent mr-2" />
-                Next Up To Do {completedTasks.size >= dashboardData.tasks.length ? "– you're all caught up!" : `(${dashboardData.tasks.length - completedTasks.size})`}
+                Next Up To Do {(() => {
+                  const realTasks = dashboardData.tasks.filter(task => task.id !== "placeholder");
+                  const completedRealTasks = realTasks.filter(task => completedTasks.has(task.id)).length;
+                  return completedRealTasks >= realTasks.length ? "– you're all caught up!" : `(${realTasks.length - completedRealTasks})`;
+                })()}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {dashboardData.tasks.map((task) => {
                   const isCompleted = completedTasks.has(task.id);
+                  const isPlaceholder = task.id === "placeholder";
+                  
                   return (
-                    <Card key={task.id} className={`${task.bgColor} border ${task.borderColor} ${isCompleted ? 'opacity-50' : ''}`}>
+                    <Card key={task.id} className={`${task.bgColor} border-2 ${isPlaceholder ? 'border-dashed' : ''} ${task.borderColor} ${isCompleted ? 'opacity-50' : ''}`}>
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center space-x-2">
-                            <Checkbox 
-                              checked={isCompleted}
-                              onCheckedChange={() => handleTaskToggle(task.id)}
-                              className="h-4 w-4"
-                            />
+                            {!isPlaceholder && (
+                              <Checkbox 
+                                checked={isCompleted}
+                                onCheckedChange={() => handleTaskToggle(task.id)}
+                                className="h-4 w-4"
+                              />
+                            )}
                             <Badge variant="outline" className={`${task.textColor} uppercase text-xs`}>
                               {task.type}
                             </Badge>
@@ -226,10 +234,12 @@ export default function Dashboard() {
                         <h3 className={`font-medium mb-1 ${isCompleted ? 'line-through text-gray-400' : 'text-gray-900'}`}>
                           {task.title}
                         </h3>
-                        <p className={`text-sm ${isCompleted ? 'line-through text-gray-400' : 'text-gray-600'}`}>
-                          {task.description}
-                        </p>
-                        {isCompleted && (
+                        {task.description && (
+                          <p className={`text-sm ${isCompleted ? 'line-through text-gray-400' : 'text-gray-600'}`}>
+                            {task.description}
+                          </p>
+                        )}
+                        {isCompleted && !isPlaceholder && (
                           <div className="flex items-center mt-2 text-green-600">
                             <CheckCircle2 className="h-4 w-4 mr-1" />
                             <span className="text-xs">Completed</span>
@@ -277,9 +287,9 @@ export default function Dashboard() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
                 {dashboardData.weekDays.map((day) => (
                   <Card key={day.id} className="overflow-hidden">
-                    <CardHeader className={`p-4 border-b ${day.isToday ? 'bg-primary text-white' : 'bg-white'}`}>
+                    <CardHeader className="p-4 border-b bg-white">
                       <CardTitle className="text-sm">{day.name}</CardTitle>
-                      <p className={`text-xs ${day.isToday ? 'opacity-90' : 'text-gray-500'}`}>{day.date}</p>
+                      <p className="text-xs text-gray-500">{day.date}</p>
                     </CardHeader>
                     
                     <CardContent className="p-3 space-y-3">
