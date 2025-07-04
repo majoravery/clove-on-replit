@@ -1,7 +1,7 @@
 import { useDrag } from "react-dnd";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, X } from "lucide-react";
+import { X } from "lucide-react";
 import type { Meal } from "@shared/schema";
 
 interface MealCardProps {
@@ -52,13 +52,17 @@ export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps)
         className="w-full h-20 object-cover rounded mb-2"
         loading="lazy"
       />
+      <div className="flex items-center justify-between mb-2">
+        <Badge variant="outline" className="text-xs uppercase">
+          {meal.type}
+        </Badge>
+        <span className={`text-xs ${getDifficultyColor(meal.difficulty)}`}>
+          {meal.difficulty}
+        </span>
+      </div>
       <h4 className="text-sm font-medium text-gray-900 mb-1">{meal.title}</h4>
       <div className="flex items-center justify-between">
         <span className="text-xs text-gray-500">{meal.cuisine}</span>
-        <div className="flex items-center text-xs text-gray-500">
-          <Star className="h-3 w-3 text-yellow-400 mr-1 fill-current" />
-          <span className={getDifficultyColor(meal.difficulty)}>{meal.difficulty}</span>
-        </div>
       </div>
       {(meal.type === "dinner" || meal.type === "lunch") && (
         <Button
