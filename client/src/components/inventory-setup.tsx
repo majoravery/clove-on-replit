@@ -4,6 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useQueryClient } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 
 interface InventorySetupProps {
   open: boolean;
@@ -78,6 +81,8 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
   const [selectedItems, setSelectedItems] = useState<Record<string, string[]>>({});
   const [customItem, setCustomItem] = useState("");
   const [showCustomInput, setShowCustomInput] = useState(false);
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
 
   if (!open) return null;
 
@@ -120,7 +125,7 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     // Save progress
     localStorage.setItem('inventoryProgress', JSON.stringify(selectedItems));
     
@@ -130,6 +135,24 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
       // Complete setup
       localStorage.setItem('userInventory', JSON.stringify(selectedItems));
       localStorage.setItem('setupCompleted', 'true');
+      
+      try {
+        // Activate demo data
+        await apiRequest("/api/activate-demo", "POST");
+        queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
+        
+        toast({
+          title: "Setup complete!",
+          description: "Your inventory has been set up and meal planning is ready.",
+        });
+      } catch (error) {
+        toast({
+          title: "Setup completed with issues",
+          description: "Your inventory was saved but there was an issue loading demo data.",
+          variant: "destructive",
+        });
+      }
+      
       onComplete();
     }
   };

@@ -104,7 +104,7 @@ export default function Dashboard() {
     });
   };
 
-  const handleResetApp = () => {
+  const handleResetApp = async () => {
     if (confirm("Are you sure you want to reset the app to empty for testing? This will clear all data.")) {
       localStorage.clear();
       setShowOnboarding(true);
@@ -112,13 +112,23 @@ export default function Dashboard() {
       setShowInventorySetup(false);
       setCompletedTasks(new Set());
       
-      // Invalidate query to refresh with empty state
-      queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
-      
-      toast({
-        title: "App reset",
-        description: "The app has been reset to empty state for testing.",
-      });
+      try {
+        // Call API to reset to empty state
+        await apiRequest("/api/reset", "POST");
+        // Invalidate query to refresh with empty state
+        queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
+        
+        toast({
+          title: "App reset",
+          description: "The app has been reset to empty state for testing.",
+        });
+      } catch (error) {
+        toast({
+          title: "Reset failed",
+          description: "Failed to reset the app state.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -270,7 +280,7 @@ export default function Dashboard() {
                     
                     <CardContent className="p-3 space-y-3">
                       {/* Action Items as Cards */}
-                      {day.actionItems.map((item, index) => (
+                      {(day.actionItems || []).map((item, index) => (
                         <div key={`action-${index}`} className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                           <div className="flex items-center text-xs text-blue-600 mb-2">
                             <Clock className="h-3 w-3 mr-1" />

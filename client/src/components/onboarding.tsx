@@ -38,85 +38,85 @@ const cuisineOptions = [
   { 
     value: "italian", 
     label: "Italian", 
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=150&h=100&fit=crop&crop=center",
     dishes: "Pasta, Pizza, Risotto"
   },
   { 
     value: "chinese", 
     label: "Chinese", 
-    image: "https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=150&h=100&fit=crop&crop=center",
     dishes: "Fried Rice, Dumplings, Sweet & Sour"
   },
   { 
     value: "japanese", 
     label: "Japanese", 
-    image: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=150&h=100&fit=crop&crop=center",
     dishes: "Sushi, Ramen, Tempura"
   },
   { 
     value: "indian", 
     label: "Indian", 
-    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1574653453307-1e3392ac0ded?w=150&h=100&fit=crop&crop=center",
     dishes: "Curry, Biryani, Naan"
   },
   { 
     value: "mexican", 
     label: "Mexican", 
-    image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=150&h=100&fit=crop&crop=center",
     dishes: "Tacos, Burritos, Quesadillas"
   },
   { 
     value: "thai", 
     label: "Thai", 
-    image: "https://images.unsplash.com/photo-1559847844-5315695dadae?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=150&h=100&fit=crop&crop=center",
     dishes: "Pad Thai, Green Curry, Tom Yum"
   },
   { 
     value: "korean", 
     label: "Korean", 
-    image: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=150&h=100&fit=crop&crop=center",
     dishes: "Kimchi, Bulgogi, Bibimbap"
   },
   { 
     value: "vietnamese", 
     label: "Vietnamese", 
-    image: "https://images.unsplash.com/photo-1559314809-0f31657def5e?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=150&h=100&fit=crop&crop=center",
     dishes: "Pho, Banh Mi, Spring Rolls"
   },
   { 
     value: "french", 
     label: "French", 
-    image: "https://images.unsplash.com/photo-1601972599720-ad8689871ba9?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=150&h=100&fit=crop&crop=center",
     dishes: "Croissants, Coq au Vin, Ratatouille"
   },
   { 
     value: "american", 
     label: "American", 
-    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150&h=100&fit=crop&crop=center",
     dishes: "Burgers, BBQ, Mac & Cheese"
   },
   { 
     value: "spanish", 
     label: "Spanish", 
-    image: "https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=150&h=100&fit=crop&crop=center",
     dishes: "Paella, Tapas, Gazpacho"
   },
   { 
     value: "mediterranean", 
     label: "Mediterranean", 
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1529058155224-2562a7e03d96?w=150&h=100&fit=crop&crop=center",
     dishes: "Hummus, Greek Salad, Kebabs"
   },
   { 
     value: "middle-eastern", 
     label: "Middle Eastern", 
-    image: "https://images.unsplash.com/photo-1563379091569-18d7e2e1e3cb?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=150&h=100&fit=crop&crop=center",
     dishes: "Falafel, Shawarma, Tabbouleh"
   },
   { 
     value: "caribbean", 
     label: "Caribbean", 
-    image: "https://images.unsplash.com/photo-1547520175-a40e2656ce50?w=150&h=100&fit=crop",
+    image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=150&h=100&fit=crop&crop=center",
     dishes: "Jerk Chicken, Rice & Beans, Plantains"
   },
 ];
