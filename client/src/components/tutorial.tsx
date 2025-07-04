@@ -38,14 +38,12 @@ const tutorialSteps = [
 export default function Tutorial({ open, onComplete }: TutorialProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [highlightRect, setHighlightRect] = useState<DOMRect | null>(null);
-
-  if (!open) return null;
-
+  
   const currentTutorialStep = tutorialSteps[currentStep];
 
   // Update highlight when step changes
   useEffect(() => {
-    if (currentTutorialStep.target) {
+    if (open && currentTutorialStep.target) {
       const element = document.querySelector(`[data-tutorial="${currentTutorialStep.target}"]`);
       if (element) {
         const rect = element.getBoundingClientRect();
@@ -54,7 +52,9 @@ export default function Tutorial({ open, onComplete }: TutorialProps) {
     } else {
       setHighlightRect(null);
     }
-  }, [currentStep, currentTutorialStep.target]);
+  }, [open, currentStep, currentTutorialStep.target]);
+
+  if (!open) return null;
 
   const handleNext = () => {
     if (currentStep < tutorialSteps.length - 1) {
