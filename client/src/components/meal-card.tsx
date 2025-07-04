@@ -12,6 +12,7 @@ interface MealCardProps {
 
 export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps) {
   const isPlaceholder = !meal.image || meal.title.startsWith("Plan your");
+  const isSkipped = meal.title === "Meal skipped";
   
   const [{ isDragging }, drag] = useDrag({
     type: "meal",
@@ -28,7 +29,7 @@ export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps)
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-    canDrag: !isPlaceholder,
+    canDrag: !isPlaceholder && !isSkipped,
   });
 
   const getDifficultyColor = (difficulty: string) => {
@@ -44,14 +45,16 @@ export default function MealCard({ meal, onDragEnd, onSkipMeal }: MealCardProps)
     }
   };
 
-  if (isPlaceholder) {
+  if (isPlaceholder || isSkipped) {
     return (
-      <div className="meal-card bg-gray-50 border-2 border-dashed border-gray-200 rounded-lg p-3 transition-all">
+      <div className={`meal-card ${isSkipped ? 'bg-red-50 border-2 border-dashed border-red-200' : 'bg-gray-50 border-2 border-dashed border-gray-200'} rounded-lg p-3 transition-all`}>
         <Badge variant="outline" className="text-xs uppercase mb-2">
           {meal.type}
         </Badge>
         <div className="w-full h-20 bg-gray-100 rounded mb-2 flex items-center justify-center">
-          <span className="text-xs text-gray-400">No meal planned</span>
+          <span className={`text-xs ${isSkipped ? 'text-red-500' : 'text-gray-400'}`}>
+            {isSkipped ? 'Meal skipped' : 'No meal planned'}
+          </span>
         </div>
       </div>
     );

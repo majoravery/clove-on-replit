@@ -123,16 +123,6 @@ export class MemStorage implements IStorage {
           textColor: "text-blue-800"
         },
         {
-          id: "2",
-          type: "shopping",
-          title: "Buy more eggs",
-          description: "Running low",
-          time: "",
-          bgColor: "bg-orange-50",
-          borderColor: "border-orange-200",
-          textColor: "text-orange-800"
-        },
-        {
           id: "3",
           type: "prep",
           title: "Prep vegetables",
@@ -145,7 +135,7 @@ export class MemStorage implements IStorage {
       ],
       weekDays: weekDays.map((day, dayIndex) => ({
         ...day,
-        actionItems: dayIndex === 0 ? ["Marinate chicken", "Prep vegetables"] : dayIndex === 1 ? ["Shop for eggs", "Prep vegetables"] : [],
+        actionItems: [],
         meals: [
           { id: `${dayIndex * 3 + 1}`, type: "breakfast" as const, ...demoMeals[dayIndex][0], dayId: day.id },
           { id: `${dayIndex * 3 + 2}`, type: "lunch" as const, ...demoMeals[dayIndex][1], dayId: day.id },
@@ -171,12 +161,21 @@ export class MemStorage implements IStorage {
   }
 
   async skipMeal(mealId: string): Promise<void> {
-    // Find and remove the meal from the appropriate day
+    // Find and replace the meal with a "skipped" placeholder
     for (const day of this.data.weekDays) {
       const mealIndex = day.meals.findIndex(meal => meal.id === mealId);
       if (mealIndex !== -1) {
-        // Remove the meal
-        day.meals.splice(mealIndex, 1);
+        const originalMeal = day.meals[mealIndex];
+        // Replace with skipped placeholder
+        day.meals[mealIndex] = {
+          id: mealId,
+          type: originalMeal.type,
+          title: "Meal skipped",
+          image: "",
+          cuisine: "",
+          difficulty: "Easy" as const,
+          dayId: day.id
+        };
         break;
       }
     }
