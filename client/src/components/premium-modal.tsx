@@ -12,13 +12,24 @@ import { Crown } from "lucide-react";
 interface PremiumModalProps {
   open: boolean;
   onClose: () => void;
+  feature?: 'drag-drop' | 'past-plans';
 }
 
-export default function PremiumModal({ open, onClose }: PremiumModalProps) {
+export default function PremiumModal({ open, onClose, feature = 'drag-drop' }: PremiumModalProps) {
   const handleUpgrade = () => {
     // TODO: Implement upgrade flow
     console.log("Redirecting to upgrade page...");
     onClose();
+  };
+
+  const getFeatureDescription = () => {
+    switch (feature) {
+      case 'past-plans':
+        return "View your past meal plans and track your cooking history with Clove Premium. Upgrade to unlock this feature and more!";
+      case 'drag-drop':
+      default:
+        return "Meal rearrangement is available with Clove Premium. Upgrade to unlock this feature and more!";
+    }
   };
 
   return (
@@ -30,7 +41,7 @@ export default function PremiumModal({ open, onClose }: PremiumModalProps) {
           </div>
           <DialogTitle className="text-xl">Premium Feature</DialogTitle>
           <DialogDescription className="text-gray-600">
-            Meal rearrangement is available with Clove Premium. Upgrade to unlock this feature and more!
+            {getFeatureDescription()}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex space-x-3 sm:space-x-3">

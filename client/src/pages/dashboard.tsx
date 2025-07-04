@@ -20,6 +20,7 @@ import type { DashboardData } from "@shared/schema";
 
 export default function Dashboard() {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [premiumFeature, setPremiumFeature] = useState<'drag-drop' | 'past-plans'>('drag-drop');
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
   const [showOnboarding, setShowOnboarding] = useState(() => {
@@ -103,6 +104,7 @@ export default function Dashboard() {
   });
 
   const handleDragEnd = () => {
+    setPremiumFeature('drag-drop');
     setShowPremiumModal(true);
   };
 
@@ -268,7 +270,10 @@ export default function Dashboard() {
                   7-Day Meal Plan
                 </h2>
                 <div className="flex items-center space-x-3">
-                  <Button variant="outline" disabled className="opacity-50">
+                  <Button variant="outline" onClick={() => {
+                    setPremiumFeature('past-plans');
+                    setShowPremiumModal(true);
+                  }}>
                     <History className="h-4 w-4 mr-2" />
                     View Past Plans
                   </Button>
@@ -293,10 +298,10 @@ export default function Dashboard() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
-                {dashboardData.weekDays.map((day) => (
+                {dashboardData.weekDays.map((day, index) => (
                   <Card key={day.id} className="overflow-hidden">
                     <CardHeader className="p-4 border-b bg-white">
-                      <CardTitle className="text-sm">{day.name}</CardTitle>
+                      <CardTitle className="text-sm">{index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : day.name}</CardTitle>
                       <p className="text-xs text-gray-500">{day.date}</p>
                     </CardHeader>
                     
@@ -339,7 +344,8 @@ export default function Dashboard() {
 
         <PremiumModal 
           open={showPremiumModal} 
-          onClose={() => setShowPremiumModal(false)} 
+          onClose={() => setShowPremiumModal(false)}
+          feature={premiumFeature}
         />
 
         <Onboarding
