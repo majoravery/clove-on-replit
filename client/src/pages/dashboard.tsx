@@ -179,7 +179,7 @@ export default function Dashboard() {
 
 
             {/* Next Up To Do Section */}
-            <div className="bg-white border-b border-gray-200 p-6">
+            <div className="bg-white border-b border-gray-200 p-6" data-tutorial="tasks">
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                 <Clock className="h-5 w-5 text-accent mr-2" />
                 Next Up To Do {completedTasks.size >= dashboardData.tasks.length ? "– you're all caught up!" : `(${dashboardData.tasks.length - completedTasks.size})`}
@@ -223,7 +223,7 @@ export default function Dashboard() {
             </div>
 
             {/* 7-Day Calendar */}
-            <div className="flex-1 p-6 bg-gray-50 overflow-auto">
+            <div className="flex-1 p-6 bg-gray-50 overflow-auto" data-tutorial="meal-plan">
               <div className="mb-6 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900 flex items-center">
                   <Calendar className="h-5 w-5 text-accent mr-2" />
@@ -291,10 +291,12 @@ export default function Dashboard() {
           </div>
           
           {/* Sidebar */}
-          <Sidebar 
-            inventory={dashboardData.inventory} 
-            tasks={dashboardData.tasks} 
-          />
+          <div data-tutorial="sidebar">
+            <Sidebar 
+              inventory={dashboardData.inventory} 
+              tasks={dashboardData.tasks} 
+            />
+          </div>
         </div>
 
         <PremiumModal 

@@ -98,12 +98,25 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
     if (customItem.trim()) {
       const categoryId = currentCategory.id;
       const currentItems = selectedItems[categoryId] || [];
-      setSelectedItems({ 
-        ...selectedItems, 
-        [categoryId]: [...currentItems, customItem.trim()] 
-      });
-      setCustomItem("");
-      setShowCustomInput(false);
+      const trimmedItem = customItem.trim();
+      
+      // Check if item already exists in predefined items or custom items
+      const allExistingItems = [...currentCategory.items, ...currentItems];
+      const itemExists = allExistingItems.some(item => 
+        item.toLowerCase() === trimmedItem.toLowerCase()
+      );
+      
+      if (!itemExists) {
+        setSelectedItems({ 
+          ...selectedItems, 
+          [categoryId]: [...currentItems, trimmedItem] 
+        });
+        setCustomItem("");
+        setShowCustomInput(false);
+      } else {
+        // Item already exists, show feedback or handle as needed
+        alert("This item already exists in your selection.");
+      }
     }
   };
 
@@ -188,9 +201,10 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
 
                 {/* Item Selection */}
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {/* Predefined Items */}
                   {currentCategory.items.map((item) => (
                     <button
-                      key={item}
+                      key={`predefined-${item}`}
                       onClick={() => handleItemToggle(item)}
                       className={`p-3 rounded-lg border-2 text-sm transition-all ${
                         currentSelectedItems.includes(item)
@@ -201,6 +215,19 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
                       {item}
                     </button>
                   ))}
+                  
+                  {/* Custom Items */}
+                  {currentSelectedItems
+                    .filter(item => !currentCategory.items.includes(item))
+                    .map((item) => (
+                      <button
+                        key={`custom-${item}`}
+                        onClick={() => handleItemToggle(item)}
+                        className="p-3 rounded-lg border-2 border-primary bg-primary/10 text-primary text-sm transition-all"
+                      >
+                        {item}
+                      </button>
+                    ))}
                   
                   {/* Custom Item Button/Input */}
                   {!showCustomInput ? (
@@ -235,26 +262,6 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
                     </div>
                   )}
                 </div>
-
-                {/* Selected Custom Items */}
-                {currentSelectedItems.filter(item => !currentCategory.items.includes(item)).length > 0 && (
-                  <div className="mt-6">
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Custom items:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {currentSelectedItems
-                        .filter(item => !currentCategory.items.includes(item))
-                        .map((item) => (
-                          <button
-                            key={item}
-                            onClick={() => handleItemToggle(item)}
-                            className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm hover:bg-blue-200"
-                          >
-                            {item} ×
-                          </button>
-                        ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </CardContent>
 
