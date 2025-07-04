@@ -22,7 +22,9 @@ export default function Dashboard() {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
-  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(() => {
+    return !localStorage.getItem('onboardingData');
+  });
   const [showTutorial, setShowTutorial] = useState(false);
   const [showInventorySetup, setShowInventorySetup] = useState(false);
   const { toast } = useToast();
@@ -109,6 +111,10 @@ export default function Dashboard() {
       setShowTutorial(false);
       setShowInventorySetup(false);
       setCompletedTasks(new Set());
+      
+      // Invalidate query to refresh with empty state
+      queryClient.invalidateQueries({ queryKey: ["/api/dashboard"] });
+      
       toast({
         title: "App reset",
         description: "The app has been reset to empty state for testing.",

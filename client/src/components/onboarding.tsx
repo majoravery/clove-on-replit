@@ -129,6 +129,7 @@ const difficultyLevels = [
 ];
 
 const steps = [
+  "Welcome",
   "Budget",
   "Dietary Restrictions", 
   "Cuisine Preferences",
@@ -183,7 +184,47 @@ export default function Onboarding({ open, onComplete }: OnboardingProps) {
 
   const renderStep = () => {
     switch (currentStep) {
-      case 0: // Budget
+      case 0: // Welcome
+        return (
+          <div className="space-y-6 text-center">
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold text-gray-900">Welcome to Clove!</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Your smart meal planning assistant designed for individuals living alone. 
+                Clove helps you reduce food waste, save money, and eat better through intelligent 
+                inventory tracking and personalized meal recommendations.
+              </p>
+            </div>
+            
+            <div className="bg-blue-50 p-6 rounded-lg space-y-4">
+              <h3 className="text-xl font-semibold text-blue-900">How Clove Works:</h3>
+              <div className="grid md:grid-cols-3 gap-4 text-sm">
+                <div className="space-y-2">
+                  <div className="w-8 h-8 bg-blue-500 rounded-full text-white flex items-center justify-center font-bold mx-auto">1</div>
+                  <p className="text-blue-800 font-medium">Track Your Inventory</p>
+                  <p className="text-blue-600">Monitor what you have and get low-stock alerts</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-8 h-8 bg-blue-500 rounded-full text-white flex items-center justify-center font-bold mx-auto">2</div>
+                  <p className="text-blue-800 font-medium">Get Smart Meal Plans</p>
+                  <p className="text-blue-600">Receive personalized recipes based on your preferences</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-8 h-8 bg-blue-500 rounded-full text-white flex items-center justify-center font-bold mx-auto">3</div>
+                  <p className="text-blue-800 font-medium">Reduce Food Waste</p>
+                  <p className="text-blue-600">Use what you have before it expires</p>
+                </div>
+              </div>
+            </div>
+            
+            <p className="text-gray-600">
+              Let's start by learning about your cooking preferences and dietary needs. 
+              This will take just 2 minutes and help us create the perfect meal planning experience for you.
+            </p>
+          </div>
+        );
+
+      case 1: // Budget
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -208,7 +249,7 @@ export default function Onboarding({ open, onComplete }: OnboardingProps) {
           </div>
         );
 
-      case 1: // Dietary Restrictions
+      case 2: // Dietary Restrictions
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -233,7 +274,7 @@ export default function Onboarding({ open, onComplete }: OnboardingProps) {
           </div>
         );
 
-      case 2: // Cuisines
+      case 3: // Cuisines
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -264,7 +305,7 @@ export default function Onboarding({ open, onComplete }: OnboardingProps) {
           </div>
         );
 
-      case 3: // Cooking Frequency
+      case 4: // Cooking Frequency
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -310,7 +351,7 @@ export default function Onboarding({ open, onComplete }: OnboardingProps) {
           </div>
         );
 
-      case 4: // Difficulty Range
+      case 5: // Difficulty Range
         return (
           <div className="space-y-6">
             <div className="text-center">
@@ -344,7 +385,7 @@ export default function Onboarding({ open, onComplete }: OnboardingProps) {
           </div>
         );
 
-      case 5: // Other Preferences
+      case 6: // Other Preferences
         return (
           <div className="space-y-6">
             <div className="text-center">

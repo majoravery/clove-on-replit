@@ -129,6 +129,7 @@ export default function InventorySetup({ open, onComplete }: InventorySetupProps
     } else {
       // Complete setup
       localStorage.setItem('userInventory', JSON.stringify(selectedItems));
+      localStorage.setItem('setupCompleted', 'true');
       onComplete();
     }
   };

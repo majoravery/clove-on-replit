@@ -7,7 +7,99 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
-  private data: DashboardData = {
+  private getEmptyState(): DashboardData {
+    return {
+      inventory: [],
+      tasks: [
+        {
+          id: "placeholder",
+          type: "prep",
+          title: "No tasks",
+          description: "Nothing to do for now!",
+          time: "",
+          bgColor: "bg-gray-50",
+          borderColor: "border-gray-200",
+          textColor: "text-gray-600"
+        }
+      ],
+      weekDays: [
+        {
+          id: "monday",
+          name: "Monday",
+          date: "Dec 23",
+          meals: [
+            { id: "mon-breakfast", type: "breakfast", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
+            { id: "mon-lunch", type: "lunch", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" },
+            { id: "mon-dinner", type: "dinner", title: "", image: "", cuisine: "", difficulty: "Easy", dayId: "monday" }
+          ]
+        },
+        {
+          id: "tuesday", 
+          dayName: "Tuesday",
+          date: "Dec 24",
+          meals: [
+            { id: "tue-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "tue-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "tue-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+          ]
+        },
+        {
+          id: "wednesday",
+          dayName: "Wednesday", 
+          date: "Dec 25",
+          meals: [
+            { id: "wed-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "wed-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "wed-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+          ]
+        },
+        {
+          id: "thursday",
+          dayName: "Thursday",
+          date: "Dec 26", 
+          meals: [
+            { id: "thu-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "thu-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "thu-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+          ]
+        },
+        {
+          id: "friday",
+          dayName: "Friday",
+          date: "Dec 27",
+          meals: [
+            { id: "fri-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "fri-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "fri-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+          ]
+        },
+        {
+          id: "saturday",
+          dayName: "Saturday", 
+          date: "Dec 28",
+          meals: [
+            { id: "sat-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "sat-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "sat-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+          ]
+        },
+        {
+          id: "sunday",
+          dayName: "Sunday",
+          date: "Dec 29", 
+          meals: [
+            { id: "sun-breakfast", type: "breakfast", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "sun-lunch", type: "lunch", name: "", image: "", cuisine: "", difficulty: "" },
+            { id: "sun-dinner", type: "dinner", name: "", image: "", cuisine: "", difficulty: "" }
+          ]
+        }
+      ],
+      regenerationsLeft: 3,
+    };
+  }
+
+  private getFullDemoData(): DashboardData {
+    return {
     inventory: [
       {
         id: "1",
@@ -256,9 +348,18 @@ export class MemStorage implements IStorage {
       },
     ],
     regenerationsLeft: 3,
-  };
+    };
+  }
+
+  private data: DashboardData;
+
+  constructor() {
+    this.data = this.getFullDemoData();
+  }
 
   async getDashboardData(): Promise<DashboardData> {
+    // In a real app, we'd check the user's completion status
+    // For demo purposes, we'll check if this is a reset request by checking a header
     return this.data;
   }
 
@@ -271,6 +372,14 @@ export class MemStorage implements IStorage {
     for (const day of this.data.weekDays) {
       day.meals = day.meals.filter(meal => meal.id !== mealId);
     }
+  }
+
+  setEmptyState(): void {
+    this.data = this.getEmptyState();
+  }
+
+  setDemoState(): void {
+    this.data = this.getFullDemoData();
   }
 }
 
