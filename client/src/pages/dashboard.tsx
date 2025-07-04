@@ -10,6 +10,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Sidebar from "@/components/sidebar";
 import MealCard from "@/components/meal-card";
 import PremiumModal from "@/components/premium-modal";
+import Onboarding from "@/components/onboarding";
+import Tutorial from "@/components/tutorial";
+import InventorySetup from "@/components/inventory-setup";
 import { Loader2, RefreshCw, History, Clock, User, Settings, HelpCircle, LogOut, Calendar, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
@@ -19,6 +22,9 @@ export default function Dashboard() {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [showInventorySetup, setShowInventorySetup] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -96,6 +102,20 @@ export default function Dashboard() {
     });
   };
 
+  const handleResetApp = () => {
+    if (confirm("Are you sure you want to reset the app to empty for testing? This will clear all data.")) {
+      localStorage.clear();
+      setShowOnboarding(true);
+      setShowTutorial(false);
+      setShowInventorySetup(false);
+      setCompletedTasks(new Set());
+      toast({
+        title: "App reset",
+        description: "The app has been reset to empty state for testing.",
+      });
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -119,27 +139,37 @@ export default function Dashboard() {
         <div className="bg-white border-b border-gray-200 p-6">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-900">Clove</h1>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                  <User className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                  <Settings className="h-4 w-4 mr-2" />
-                  Settings
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <HelpCircle className="h-4 w-4 mr-2" />
-                  Help
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Sign Out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="flex items-center space-x-3">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={handleResetApp}
+                className="text-red-600 border-red-300 hover:bg-red-50"
+              >
+                Reset App
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                    <User className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>
+                    <Settings className="h-4 w-4 mr-2" />
+                    Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <HelpCircle className="h-4 w-4 mr-2" />
+                    Help
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
         </div>
         
@@ -270,6 +300,27 @@ export default function Dashboard() {
         <PremiumModal 
           open={showPremiumModal} 
           onClose={() => setShowPremiumModal(false)} 
+        />
+
+        <Onboarding
+          open={showOnboarding}
+          onComplete={() => {
+            setShowOnboarding(false);
+            setShowTutorial(true);
+          }}
+        />
+
+        <Tutorial
+          open={showTutorial}
+          onComplete={() => {
+            setShowTutorial(false);
+            setShowInventorySetup(true);
+          }}
+        />
+
+        <InventorySetup
+          open={showInventorySetup}
+          onComplete={() => setShowInventorySetup(false)}
         />
       </div>
     </DndProvider>

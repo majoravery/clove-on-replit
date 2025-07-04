@@ -1,0 +1,50 @@
+- Onboarding process
+    1. User is presented with an overlay that introduces the app and ask you a few questions on how you intend to use the app
+        - Background is the start page/dashboard, blurred
+        - A question is presented per screen, with the options appearing as pills that are highlighted (accented border, different background colour etc) when selected
+            - Budget per meal
+                - Options: under $5, around $5 to $15, above $20
+            - Dietary restrictions
+                - Options: vegetarian, vegan, gluten-free, pescatarian, keto, and halal
+            - Cuisine
+                - Options: Italian, Chinese, Japanese, Indian, Mexican, Thai, Korean, Vietnamese, French, American, Spanish, Mediterranean, Middle Eastern, Caribbean)
+                - Columns of 4
+                - Each cuisine option includes an image of their most well-known dish and a description of their top 3 most well-known dishes
+            - Cooking frequency
+                - For each meal (breakfast, lunch and dinner) “row”, allow the user to input their cooking frequency per week via a range slider
+                - Range slider should have step/tick labels from 0 ("Never") to 7 ("Daily")
+            - Difficulty range
+                - Double-sided range slider for min and max values (range slider that is adjustable on both ends)
+                - Step/tick labels on the range slider in ascending order:
+                    - Quick & easy: Prep & cook in ≤30 min, usually one-pot / sheet-pan, minimal cleanup
+                    - Stovetop & oven combos: multiple elements but straightforward techniques
+                    - Layered dishes: several components assembled (proteins, starch, sauce)
+                    - Intermediate techniques: involves specialised skills or tools
+            - Other preferences
+                - Include leftovers as meals?
+        - Overlay screens should include a back button for the user to return to the previous page
+        - Top of overlay screen should include a progress bar to indicate onboarding progress
+    2. Once user fills in all the questions, overlay indicates that preference profile has been saved, with button that says “Let’s get started”
+    3. Overlay fades out when button is clicked, revealing the dashboard underneath
+    4. User is given a tour of the dashboard
+        - Tutorial style
+            - Highlights the section it’s explaining
+            - Pop up with the explanation of the section
+            - Counter to indicate the progress of the tutorial
+            - Next/back buttons to progress along the tutorial
+        - Tour
+            - Main component is weekly meal plan
+            - Sidebar component is the user’s inventory
+                - Prompt for user to fill in inventory
+    5. User is presented with an overlay to fill in inventory via multiple screens, one screen per category
+        - Categories: produce, dairy & eggs, meat & seafood, grains & pasta, baking supplies, canned & jarred goods, oils & vinegars, sauces & condiments, spices & herbs, refrigerated perishables, frozen items, beverages
+        - Main portion of overlay
+            - Title of category
+            - Pills of items in that category to be tapped on and easily selected (pre-defined)
+            - Last pill is “Others: please specify” and upon tapping, turns into an input field for user to type in their custom item
+                - The value of the custom item should appear as a selected pill after pressing Enter key
+                - When deselecting this pill, the pill remains, but does not persist (e.g. does not appear the next time this overlay is opened)
+                - (Optional) if value that use it enters does not sound like it is a pantry item, add it but flag it
+            - Button to go the next category
+                - Upon clicking, saves the items in the previous category to prevent loss of data if accidentally exiting app
+        - Vertical sidebar includes progress through the categories, display the title for easy overview
